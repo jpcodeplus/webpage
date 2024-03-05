@@ -1,9 +1,9 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+ import SocialIcons from './components/SocialIcons.vue';
 </script>
 
-<template>
 
+<template>
 <main class="relative mx-auto flex max-h-screen w-full max-w-screen-xl justify-center gap-3">
   <div id="main-menu" class="abso z-20 h-screen w-1/3 max-w-80">
   
@@ -19,6 +19,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <p class="text-base font-thin text-slate-400">aus Karlsruhe</p>
         <hr class="my-2 w-1/3 border-dashed border-gray-200" />
       </div>
+
     </div>
   
     <!-- Middle -->
@@ -28,7 +29,9 @@ import { RouterLink, RouterView } from 'vue-router'
     </nav>
 
     <!-- Bottom -->
-    <div>Social Media Links</div>
+    <div class="flex justify-center my-3 rounded-full bg-slate-100 mx-auto border border-slate-200">
+      <SocialIcons />
+    </div>
 
   </div>
   </div>
