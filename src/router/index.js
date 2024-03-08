@@ -12,37 +12,44 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: StartSeite,
       meta: { breadcrumb: 'Home' },
       children: [
         {
           path: 'ueber-mich', // Pfad relativ zum Elternelement angepasst
-          name: 'ueber-mich',
+          name: 'Über mich',
           component: UeberMich,
-          meta: { breadcrumb: 'Der Webentwickler' }
+          meta: { breadcrumb: 'Der Webentwickler' },
+          children: [{
+            path: 'demo', // Pfad relativ zum Elternelement angepasst
+            name: 'Eine Demo',
+            component: UeberMich,
+            meta: { breadcrumb: 'Der Webentwickler' }
+          }
+          ]
         },
         {
           path: 'angebot', // Pfad relativ zum Elternelement angepasst
-          name: 'angebot',
+          name: 'Angebot',
           component: DasAngebot,
           meta: { breadcrumb: 'Das Angebot' }
         },
         {
           path: 'vorteile', // Pfad relativ zum Elternelement angepasst
-          name: 'vorteile',
+          name: 'Vorteile',
           component: DieVorteile,
           meta: { breadcrumb: 'Deine Vorteile' }
         },
         {
           path: 'ablauf', // Pfad relativ zum Elternelement angepasst
-          name: 'ablauf',
+          name: 'Ablauf',
           component: DerAblauf,
           meta: { breadcrumb: 'Der Ablauf' }
         },
         {
           path: 'projekt-starten', // Pfad relativ zum Elternelement angepasst
-          name: 'projekt-starten',
+          name: 'Starten',
           component: DerAblauf, // Hier eventuell ein Fehler? Gleiche Komponente wie 'ablauf'?
           meta: { breadcrumb: 'Projekt starten' }
         }
