@@ -1,11 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class',
+  darkMode: false, 
   theme: {
     extend: {
       colors: {
         'primary': {
+          DEFAULT: '#3b86c3',
           '50': '#f3f7fc',
           '100': '#e6eff8',
           '200': '#c7dcf0',
