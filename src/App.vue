@@ -3,9 +3,8 @@ import { ref } from 'vue';
 
 import SocialIcons from './components/SocialIcons.vue';
 import MainMenu from './components/MainMenu.vue';
-import BreadCrumbs from './components/BreadCrumbs.vue';
+import Breadcrumbs from './components/CPM/CPM_Breadcrumbs.vue';
 import HeadHexagon from './components/HeadHexagon.vue';
-
 
  const isMenuVisible = ref(false);
 
@@ -49,7 +48,8 @@ import HeadHexagon from './components/HeadHexagon.vue';
 
     <div class="grow-1 md:mt-44 z-30 w-full pointer-events-all">
       <main>
-        <BreadCrumbs/>
+
+        <Breadcrumbs/>
 
         <div class="bg-white z-10">
           <RouterView/>
