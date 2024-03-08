@@ -1,5 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import StartSeite from '../views/StartSeite.vue'
+
+// Lazy loading für Komponenten, um die initiale Ladezeit zu verbessern
+const StartSeite = () => import('../views/StartSeite.vue')
+const UeberMich = () => import('../views/UeberMich.vue')
+const DasAngebot = () => import('../views/DasAngebot.vue')
+const DieVorteile = () => import('../views/DieVorteile.vue')
+const DerAblauf = () => import('../views/DerAblauf.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,70 +13,50 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      meta: { 
-        breadcrumb: 'Home',
-        title: 'Professionelle Webseite erstellen lassen' 
-      },
-      component: StartSeite
-    },
-    {
-      path: '/ueber-mich',
-      name: 'ueber-mich',
-      meta: { 
-        breadcrumb: 'Dein Webentwickler',
-        title: 'Webentwickler aus Karlsruhe' 
-      },
-      component: () => import('../views/UeberMich.vue')
-    }
-    ,
-    {
-      path: '/angebot',
-      name: 'angebot',
-      meta: { breadcrumb: 'Das Angebot' },
-      component: () => import('../views/DasAngebot.vue')
-    }
-    ,
-    {
-      path: '/vorteile',
-      name: 'Deine Vorteile',
-      meta: { breadcrumb: 'Deine Vorteile' },
-      component: () => import('../views/DieVorteile.vue')
-    }
-    ,
-    {
-      path: '/ablauf',
-      name: 'ablauf',
-      meta: { breadcrumb: 'Der Ablauf' },
-      component: () => import('../views/DerAblauf.vue')
-    },
-    {
-      path: '/projekt-starten',
-      name: 'projekt-starten',
-      meta: { breadcrumb: 'Projekt starten' },
-      component: () => import('../views/DerAblauf.vue')
+      component: StartSeite,
+      meta: { breadcrumb: 'Home' },
+      children: [
+        {
+          path: 'ueber-mich', // Pfad relativ zum Elternelement angepasst
+          name: 'ueber-mich',
+          component: UeberMich,
+          meta: { breadcrumb: 'Der Webentwickler' }
+        },
+        {
+          path: 'angebot', // Pfad relativ zum Elternelement angepasst
+          name: 'angebot',
+          component: DasAngebot,
+          meta: { breadcrumb: 'Das Angebot' }
+        },
+        {
+          path: 'vorteile', // Pfad relativ zum Elternelement angepasst
+          name: 'vorteile',
+          component: DieVorteile,
+          meta: { breadcrumb: 'Deine Vorteile' }
+        },
+        {
+          path: 'ablauf', // Pfad relativ zum Elternelement angepasst
+          name: 'ablauf',
+          component: DerAblauf,
+          meta: { breadcrumb: 'Der Ablauf' }
+        },
+        {
+          path: 'projekt-starten', // Pfad relativ zum Elternelement angepasst
+          name: 'projekt-starten',
+          component: DerAblauf, // Hier eventuell ein Fehler? Gleiche Komponente wie 'ablauf'?
+          meta: { breadcrumb: 'Projekt starten' }
+        }
+      ]
     }
   ]
 })
 
-
-router.afterEach((to, from) => {
+router.afterEach((to) => {
   // Setze den Titel der Seite
-  document.title = to.meta.title || 'Standardtitel, falls keiner definiert ist';
+  document.title = to.meta.title || 'Standardtitel, falls keiner definiert ist'
 
-  // Entferne alle vorherigen Meta-Tags
-  document.querySelectorAll('head [data-vue-meta="true"]').forEach(el => el.remove());
-
-  // Setze die Meta-Tags für die aktuelle Seite
-  if (to.meta.metaTags) {
-    to.meta.metaTags.forEach(tag => {
-      const tagElement = document.createElement('meta');
-      Object.keys(tag).forEach(key => {
-        tagElement.setAttribute(key, tag[key]);
-      });
-      tagElement.setAttribute('data-vue-meta', 'true');
-      document.head.appendChild(tagElement);
-    });
-  }
-});
+  // Besser wäre es, Meta-Tags über ein Vue-Plugin oder ähnliches zu verwalten,
+  // um die Separation of Concerns (Trennung der Zuständigkeiten) zu gewährleisten.
+})
 
 export default router
