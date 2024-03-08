@@ -2,8 +2,8 @@
 import { ref } from 'vue';
 
 import SocialIcons from './components/SocialIcons.vue';
-import MainMenu from './components/MainMenu.vue';
 import Breadcrumbs from './components/CPM/CPM_Breadcrumbs.vue';
+import MainMenu from './components/CPM/CPM_Menu.vue';
 import HeadHexagon from './components/HeadHexagon.vue';
 
  const isMenuVisible = ref(false);
@@ -37,12 +37,15 @@ import HeadHexagon from './components/HeadHexagon.vue';
       </div>
 
       <nav :class="{ 'hidden md:flex': !isMenuVisible, 'flex': isMenuVisible }" class="h-full flex flex-col justify-between z-20 bg-slate-100 md:bg-transparent">
+       
         <div id="main-menu" class="m-2 flex w-auto flex-col space-y-3  rounded-md  p-6 px-3 text-center text-lg md:m-2">
           <MainMenu/>
         </div>
+
         <div id="social-icons" class="flex justify-center my-3 rounded-full bg-slate-100 mx-auto  border border-slate-200">
           <SocialIcons/>
         </div>
+        
       </nav>
     </header>
 
